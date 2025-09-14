@@ -356,7 +356,7 @@ export default function Lab1() {
         {' '} to get dummy text
         <br />
         Github repo -{' ' }
-        <a href="https://www.github.com" id="wd-github">
+        <a href="https://github.com/Ank7Tz/Kambaz-next-js" id="wd-github">
           click here
         </a>
       </div>

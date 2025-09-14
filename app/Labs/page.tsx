@@ -20,11 +20,14 @@ export default function Labs() {
           </Link>
         </li>
         <li>
-            <Link href="/" id="wd-kambaz-link">
-              kambaz{" "}
-            </Link>
+          <Link href="/" id="wd-kambaz-link">
+            kambaz{" "}
+          </Link>
         </li>
       </ul>
+      <footer>
+        <strong>Ankit Bando</strong>
+      </footer>
     </div>
   );
 }
