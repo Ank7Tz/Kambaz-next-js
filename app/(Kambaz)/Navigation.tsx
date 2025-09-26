@@ -4,6 +4,7 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { IoCalendarOutline } from "react-icons/io5";
 import { LiaBookSolid, LiaCogSolid } from "react-icons/lia";
 import { FaInbox, FaRegCircleUser } from "react-icons/fa6";
+import { ImLab } from "react-icons/im";
 import { ListGroup } from "react-bootstrap";
 
 import Link from "next/link";
@@ -11,7 +12,7 @@ export default function KambazNavigation() {
   return (
     <ListGroup
       id="wd-kambaz-navigation"
-      className="rounded-0 position-fixed buttom-0 top-0 d-none d-md-block bg-black z-2"
+      className="rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-black z-2"
       style={{ width: 120 }}
     >
       <ListGroup.Item
@@ -88,7 +89,7 @@ export default function KambazNavigation() {
           href="/Labs"
           id="wd-labs-link"
         >
-          <LiaCogSolid className="fs-1 text-danger" />
+          <ImLab className="fs-1 text-danger" />
           <br />
           Labs
         </Link>
