@@ -1,130 +1,210 @@
+"use client";
 import Link from "next/link";
-import Image from "next/image";
+import { Row, Col, Card, Button } from "react-bootstrap";
+
 export default function Dashboard() {
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
       <h2 id="wd-dashboard-published">Published Courses (7)</h2> <hr />
       <div id="wd-dashboard-courses">
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/1234" className="wd-dashboard-course-link">
-            <Image
-              src="/images/reactjs.jpg"
-              width={200}
-              height={150}
-              alt="react image"
-            />
-            <div>
-              <h5> CS1234 React JS </h5>
-              <p className="wd-dashboard-course-title">
-                Full Stack software developer
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/2345" className="wd-dashboard-course-link">
-            <Image
-              src="/images/golang.webp"
-              width={200}
-              height={150}
-              alt="Go image"
-            />
-            <div>
-              <h5> CS2345 Golang </h5>
-              <p className="wd-dashboard-course-title">
-                Backend development with go
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/3456" className="wd-dashboard-course-link">
-            <Image
-              src="/images/java.svg"
-              width={200}
-              height={150}
-              alt="Java image"
-            />
-            <div>
-              <h5> CS3456 Java </h5>
-              <p className="wd-dashboard-course-title">
-                Backend development with Java
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/4567" className="wd-dashboard-course-link">
-            <Image
-              src="/images/c.png"
-              width={200}
-              height={150}
-              alt="C image"
-            />
-            <div>
-              <h5> CS4567 C </h5>
-              <p className="wd-dashboard-course-title">
-                Software development with C
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/5678" className="wd-dashboard-course-link">
-            <Image
-              src="/images/C++.svg"
-              width={200}
-              height={150}
-              alt="C++ image"
-            />
-            <div>
-              <h5> CS5678 C++ </h5>
-              <p className="wd-dashboard-course-title">
-                Software development with C++
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/6789" className="wd-dashboard-course-link">
-            <Image
-              src="/images/Rust.png"
-              width={200}
-              height={150}
-              alt="Rust image"
-            />
-            <div>
-              <h5> CS6789 Rust </h5>
-              <p className="wd-dashboard-course-title">
-                Backend development with Rust
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
-        <div className="wd-dashboard-course">
-          <Link href="/Courses/1111" className="wd-dashboard-course-link">
-            <Image
-              src="/images/javascript.png"
-              width={200}
-              height={150}
-              alt="react image"
-            />
-            <div>
-              <h5> CS1111 JavaScript </h5>
-              <p className="wd-dashboard-course-title">
-                Mastering Javascript
-              </p>
-              <button> Go </button>
-            </div>
-          </Link>
-        </div>
+        <Row xs={1} md={5} className="g-4">
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/1234"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <Card.Img
+                  variant="top"
+                  src="/images/reactjs.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <Card.Body>
+                  <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS1234 React JS
+                  </Card.Title>
+                  <Card.Text
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Full Stack software developer
+                  </Card.Text>
+                  <Button variant="primary">Go</Button>
+                </Card.Body>
+              </Link>
+            </Card>
+          </Col>
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/2345"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <Card.Img
+                  variant="top"
+                  src="/images/golang.webp"
+                  width="100%"
+                  height={160}
+                  alt="Go Image"
+                />
+                <Card.Body>
+                  <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS2345 Golang
+                  </Card.Title>
+                  <Card.Text
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Backend development with go
+                  </Card.Text>
+                  <Button variant="primary">Go</Button>
+                </Card.Body>
+              </Link>
+            </Card>
+          </Col>
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/3456"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <Card.Img
+                  variant="top"
+                  src="/images/java.svg"
+                  width="100%"
+                  height={160}
+                  alt="Java Image"
+                />
+                <Card.Body>
+                  <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS3456 Java
+                  </Card.Title>
+                  <Card.Text
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Backend development with Java
+                  </Card.Text>
+                  <Button variant="primary">Go</Button>
+                </Card.Body>
+              </Link>
+            </Card>
+          </Col>
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/4567"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <Card.Img
+                  variant="top"
+                  src="/images/c.png"
+                  width="100%"
+                  height={160}
+                  alt="C Image"
+                />
+                <Card.Body>
+                  <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS4567 C
+                  </Card.Title>
+                  <Card.Text
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Software development with C
+                  </Card.Text>
+                  <Button variant="primary">Go</Button>
+                </Card.Body>
+              </Link>
+            </Card>
+          </Col>
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/5678"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <Card.Img
+                  variant="top"
+                  src="/images/C++.svg"
+                  width="100%"
+                  height={160}
+                  alt="C++ Image"
+                />
+                <Card.Body>
+                  <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS5678 C++
+                  </Card.Title>
+                  <Card.Text
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Software development with C++
+                  </Card.Text>
+                  <Button variant="primary">Go</Button>
+                </Card.Body>
+              </Link>
+            </Card>
+          </Col>
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/6789"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <Card.Img
+                  variant="top"
+                  src="/images/Rust.png"
+                  width="100%"
+                  height={160}
+                  alt="C++ Image"
+                />
+                <Card.Body>
+                  <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS6789 Rust
+                  </Card.Title>
+                  <Card.Text
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Backend development with Rust
+                  </Card.Text>
+                  <Button variant="primary">Go</Button>
+                </Card.Body>
+              </Link>
+            </Card>
+          </Col>
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/Courses/9010"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <Card.Img
+                  variant="top"
+                  src="/images/javascript.png"
+                  width="100%"
+                  height={160}
+                  alt="JavaScript Image"
+                />
+                <Card.Body>
+                  <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS1111 JavaScript
+                  </Card.Title>
+                  <Card.Text
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Mastering Javascript
+                  </Card.Text>
+                  <Button variant="primary">Go</Button>
+                </Card.Body>
+              </Link>
+            </Card>
+          </Col>
+        </Row>
       </div>
     </div>
   );

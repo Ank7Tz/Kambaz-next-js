@@ -16,7 +16,7 @@ export default function KambazNavigation() {
     <ListGroup
       id="wd-kambaz-navigation"
       className="rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-black z-2"
-      style={{ width: 120 }}
+      style={{ width: 110 }}
     >
       <ListGroup.Item
         as={Link}
