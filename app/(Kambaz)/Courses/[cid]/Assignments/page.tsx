@@ -1,88 +1,186 @@
+"use client";
+
 import Link from "next/link";
+import { InputGroup, ListGroup, Form, Button } from "react-bootstrap";
+import { BsGripVertical } from "react-icons/bs";
+import { IoMdArrowDropdown } from "react-icons/io";
+import AssignmentControls from "./AssignmentControls";
+import { IoSearchOutline } from "react-icons/io5";
+import { GoPlus } from "react-icons/go";
+import { MdOutlineAssignment } from "react-icons/md";
+import IndividualAssignmentControls from "./IndividualAssignmentControls";
 
 export default function Assignments() {
   return (
     <div id="wd-assignments">
-      <input placeholder="Search for Assignments" id="wd-search-assignment" />
-      <button id="wd-add-assignment-group">+ Group</button>
-      <button id="wd-add-assignment">+ Assignment</button>
-      <h3 id="wd-assignments-title">
-        ASSIGNMENTS 40% of Total <button>+</button>{" "}
-      </h3>
-      <ul id="wd-assignment-list">
-        <li className="wd-assignment-list-item">
-          <Link
-            href="/Courses/1234/Assignments/123"
-            className="wd-assignment-link"
+      <InputGroup
+        id="wd-search-assignment"
+        className="float-start mb-3 me-5"
+        style={{ width: "250px" }}
+      >
+        <InputGroup.Text className="border-end-0 bg-white">
+          <IoSearchOutline className="fs-5" />
+        </InputGroup.Text>
+        <Form.Control className="border-start-0 fs-5" placeholder="Search..." />
+      </InputGroup>
+      <Button
+        variant="secondary"
+        className="p-2 me-2 fs-6 btn-secondary"
+        id="wd-add-assignment-group"
+      >
+        <GoPlus className="fs-6" />
+        Group
+      </Button>
+      <Button
+        variant="secondary"
+        className="p-2 btn-secondary"
+        id="wd-add-assignment"
+      >
+        <GoPlus className="fs-5" />
+        Assignment
+      </Button>
+      <br />
+      <br />
+      <ListGroup id="wd-assignment-list">
+        <ListGroup.Item variant="secondary" className="fs-3 p-3 bg-secondary">
+          <div>
+            <BsGripVertical className="me-2 fs-5" />
+            <IoMdArrowDropdown className="me-1 fs-5" />
+            <span id="wd-assignments-title" className="fs-4">
+              ASSIGNMENTS
+            </span>
+            <AssignmentControls />
+          </div>
+        </ListGroup.Item>
+        <ListGroup>
+          <ListGroup.Item
+            id="wd-assignment-list-item"
+            className="wd-assignment"
           >
-            A1 - ENV + HTML
-          </Link>{" "}
-          <br />
-          <span className="wd-assignment-list-item-modules">
-            Multiple Modules
-          </span>
-          {" | "}
-          <strong>Not Available Until</strong>{" "}
-          <span className="wd-assignment-list-item-time-from">
-            May 6 at 12:00am
-          </span>
-          {" | "}
-          <strong>Due</strong>{" "}
-          <span className="wd-assignment-list-item-time-due">
-            May 13 at 11:59pm
-          </span>
-          {" | "}
-          <span className="wd-assignment-list-item-points">100 pts</span>
-        </li>
-        <li className="wd-assignment-list-item">
-          <Link
-            href="/Courses/1234/Assignments/123"
-            className="wd-assignment-link"
+            <div className="d-flex align-items-center">
+              <BsGripVertical
+                className="me-2"
+                style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
+              />
+              <MdOutlineAssignment
+                className="me-2 text-success"
+                style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
+              />
+              <div className="d-flex flex-column flex-grow-1">
+                <Link
+                  href="/Courses/1234/Assignments/123"
+                  className="text-decoration-none text-black wd-assignment-link"
+                >
+                  A1 - ENV + HTML
+                </Link>
+                <div>
+                  <span className="text-danger wd-assignment-list-item-modules">
+                    Multiple Modules
+                  </span>
+                  <span className="ms-2 me-2">|</span>
+                  <span className="fw-bold ">Not Available Until </span>
+                  <span className="wd-assignment-list-item-time-from">
+                    May 6 at 12:00 AM
+                  </span>
+                  <span className="ms-2 me-2">|</span>
+                  <span className="wd-assignment-list-item-time-due">
+                    Due May 13 at 11:59 PM
+                  </span>
+                  <span className="ms-2 me-2">|</span>
+                  <span className="wd-assignment-list-item-points">
+                    100 pts
+                  </span>
+                </div>
+              </div>
+              <IndividualAssignmentControls />
+            </div>
+          </ListGroup.Item>
+          <ListGroup.Item
+            id="wd-assignment-list-item"
+            className="wd-assignment"
           >
-            A2 - CSS + BOOTSTRAP
-          </Link>{" "}
-          <br />
-          <span className="wd-assignment-list-item-modules">
-            Multiple Modules
-          </span>
-          {" | "}
-          <strong>Not Available Until</strong>{" "}
-          <span className="wd-assignment-list-item-time-from">
-            May 13 at 12:00am
-          </span>
-          {" | "}
-          <strong>Due</strong>{" "}
-          <span className="wd-assignment-list-item-time-due">
-            May 20 at 11:59pm
-          </span>
-          {" | "}
-          <span className="wd-assignment-list-item-points">100 pts</span>
-        </li>
-        <li className="wd-assignment-list-item">
-          <Link
-            href="/Courses/1234/Assignments/123"
-            className="wd-assignment-link"
+            <div className="d-flex align-items-center">
+              <BsGripVertical
+                className="me-2"
+                style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
+              />
+              <MdOutlineAssignment
+                className="me-2 text-success"
+                style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
+              />
+              <div className="d-flex flex-column flex-grow-1">
+                <Link
+                  href="/Courses/1234/Assignments/123"
+                  className="text-decoration-none text-black wd-assignment-link"
+                >
+                  A2 - CSS + BOOTSTRAP
+                </Link>
+                <div>
+                  <span className="text-danger wd-assignment-list-item-modules">
+                    Multiple Modules
+                  </span>
+                  <span className="ms-2 me-2">|</span>
+                  <span className="fw-bold">Not Available Until </span>
+                  <span className="wd-assignment-list-item-time-from">
+                    May 13 at 12:00 AM
+                  </span>
+                  <span className="ms-2 me-2">|</span>
+                  <span className="wd-assignment-list-item-time-due">
+                    Due May 20 at 11:59 PM
+                  </span>
+                  <span className="ms-2 me-2">|</span>
+                  <span className="wd-assignment-list-item-points">
+                    100 pts
+                  </span>
+                </div>
+              </div>
+              <IndividualAssignmentControls />
+            </div>
+          </ListGroup.Item>
+          <ListGroup.Item
+            id="wd-assignment-list-item"
+            className="wd-assignment"
           >
-            A2 - JAVASCRIPT + REACT
-          </Link>{" "}
-          <br />
-          <span className="wd-assignment-list-item-modules">
-            Multiple Modules
-          </span>
-          {" | "}
-          <strong>Not Available Until</strong>{" "}
-          <span className="wd-assignment-list-item-time-from">
-            May 20 at 12:00am
-          </span>
-          {" | "}
-          <strong>Due</strong>{" "}
-          <span className="wd-assignment-list-item-time-due">
-            May 27 at 11:59pm
-          </span>
-          {" | "}
-          <span className="wd-assignment-list-item-points">100 pts</span>
-        </li>
-      </ul>
+            <div className="d-flex align-items-center">
+              <BsGripVertical
+                className="me-2"
+                style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
+              />
+              <MdOutlineAssignment
+                className="me-2 text-success"
+                style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
+              />
+              <div className="d-flex flex-column flex-grow-1">
+                <Link
+                  href="/Courses/1234/Assignments/123"
+                  className="text-decoration-none text-black wd-assignment-link"
+                >
+                  A3 - JAVASCRIPT + REACT
+                </Link>
+                <div>
+                  <span className="text-danger wd-assignment-list-item-modules">
+                    Multiple Modules
+                  </span>
+                  <span className="ms-2 me-2">|</span>
+                  <span className="fw-bold">Not Available Until </span>
+                  <span className="wd-assignment-list-item-time-from">
+                    May 20 at 12:00 AM
+                  </span>
+                  <span className="ms-2 me-2">|</span>
+                  <span className="wd-assignment-list-item-time-due">
+                    Due May 27 at 11:59 PM
+                  </span>
+                  <span className="ms-2 me-2">|</span>
+                  <span className="wd-assignment-list-item-points">
+                    100 pts
+                  </span>
+                </div>
+              </div>
+              <IndividualAssignmentControls />
+            </div>
+          </ListGroup.Item>
+        </ListGroup>
+      </ListGroup>
     </div>
   );
 }
