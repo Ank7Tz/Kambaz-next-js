@@ -6,7 +6,7 @@ export default function AccountLayout({
   return (
     <div id="wd-kambaz">
       <div className="d-flex">
-        <div>
+        <div className="me-5">
         <AccountNavigation />
         </div>
         <div className="flex-fill">

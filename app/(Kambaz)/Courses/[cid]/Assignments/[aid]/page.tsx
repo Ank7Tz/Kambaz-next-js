@@ -2,7 +2,7 @@ import AssignmentEditor from "./Editor";
 
 export default function AssignmentsPage() {
     return (
-        <div className="wd-assignment">
+        <div id="wd-assignment" className="">
             <AssignmentEditor />
         </div>
     )
