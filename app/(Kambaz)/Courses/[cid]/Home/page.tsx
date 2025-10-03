@@ -6,7 +6,7 @@ export default function Home() {
       <div className="w-100 me-2">
         <Modules />
       </div>
-      <div className="flex-shrink-1">
+      <div className="flex-shrink-1 d-none d-xl-block">
         <CourseStatus />
       </div>
     </div>

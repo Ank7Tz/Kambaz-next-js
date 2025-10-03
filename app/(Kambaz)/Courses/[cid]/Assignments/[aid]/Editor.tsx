@@ -70,7 +70,7 @@ export default function AssignmentEditor() {
             <Col xs={8}>
               <div className="d-flex flex-column border p-3">
                 <Form.Group className="mb-4">
-                  <Form.Select defaultValue="Online">
+                  <Form.Select defaultValue="Online" id="wd-submission-type">
                     <option value="Online">Online</option>
                   </Form.Select>
                 </Form.Group>
@@ -79,31 +79,34 @@ export default function AssignmentEditor() {
                     Online Entry Options
                   </Form.Label>
                   <Form.Check
-                    type="radio"
-                    // label="Text Entry"
+                    type="checkbox"
+                    label="Text Entry"
                     className="mb-2"
-                    name="1"
-                  />Text Entry
+                    id="wd-text-entry"
+                  />
                   <Form.Check
-                    type="radio"
+                    type="checkbox"
                     label="Website URL"
                     className="mb-2"
-                    name="1"
+                    id="wd-website-url"
                   />
                   <Form.Check
                     type="checkbox"
                     label="Media Recordings"
                     className="mb-2"
+                    id="wd-media-recordings"
                   />
                   <Form.Check
                     type="checkbox"
                     label="Student Annotation"
                     className="mb-2"
+                    id="wd-student-annotation"
                   />
                   <Form.Check
                     type="checkbox"
                     label="File Uploads"
                     className="mb-2"
+                    id="wd-file-upload"
                   />
                 </Form.Group>
               </div>
@@ -116,22 +119,33 @@ export default function AssignmentEditor() {
             <Col xs={8}>
               <div className="d-flex flex-column border p-3">
                 <Form.Group className="mb-4">
-                  <Form.Label className="fw-bold">Assign to</Form.Label>
-                  <Form.Control defaultValue="Everyone"/>
+                  <Form.Label className="fw-bold" htmlFor="wd-assign-to">
+                    Assign to
+                  </Form.Label>
+                  <Form.Control defaultValue="Everyone" id="wd-assign-to" />
                 </Form.Group>
                 <Form.Group className="mb-4">
-                  <Form.Label className="fw-bold">Due</Form.Label>
-                  <Form.Control type="date"/>
+                  <Form.Label className="fw-bold" htmlFor="wd-due-date">
+                    Due
+                  </Form.Label>
+                  <Form.Control type="date" id="wd-due-date" />
                 </Form.Group>
                 <div className="d-flex justify-content-between">
-                <Form.Group>
-                  <Form.Label className="fw-bold">Available from</Form.Label>
-                  <Form.Control type="date"/>
-                </Form.Group>
-                <Form.Group>
-                  <Form.Label className="fw-bold">Until</Form.Label>
-                  <Form.Control type="date"/>
-                </Form.Group>
+                  <Form.Group>
+                    <Form.Label className="fw-bold" htmlFor="wd-available-from">
+                      Available from
+                    </Form.Label>
+                    <Form.Control type="date" id="wd-available-from" />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label
+                      className="fw-bold"
+                      htmlFor="wd-available-until"
+                    >
+                      Until
+                    </Form.Label>
+                    <Form.Control type="date" id="wd-available-until" />
+                  </Form.Group>
                 </div>
               </div>
             </Col>
@@ -140,8 +154,12 @@ export default function AssignmentEditor() {
       </Container>
       <br />
       <hr />
-      <Button variant="danger" className="float-end p-2 fs-5">Save</Button>
-      <Button variant="secondary" className="float-end p-2 fs-5 me-2">Cancel</Button>
+      <Button variant="danger" className="float-end p-2 fs-5">
+        Save
+      </Button>
+      <Button variant="secondary" className="float-end p-2 fs-5 me-2">
+        Cancel
+      </Button>
     </div>
     // <div id="wd-assignments-editor">
     //   <label htmlFor="wd-name">
