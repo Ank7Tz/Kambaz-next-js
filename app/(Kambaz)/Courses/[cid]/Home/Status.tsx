@@ -12,7 +12,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 
 export default function CourseStatus() {
   return (
-    <div id="wd-course-status" style={{ width: "350px" }}>
+    <div id="wd-course-status" style={{ width: "350px" }} className="d-none d-md-block">
       <h2>Course Status</h2>
       <div className="d-flex">
         <div className="w-50 pe-1">

@@ -79,14 +79,16 @@ export default function AssignmentEditor() {
                     Online Entry Options
                   </Form.Label>
                   <Form.Check
-                    type="checkbox"
-                    label="Text Entry"
+                    type="radio"
+                    // label="Text Entry"
                     className="mb-2"
-                  />
+                    name="1"
+                  />Text Entry
                   <Form.Check
-                    type="checkbox"
+                    type="radio"
                     label="Website URL"
                     className="mb-2"
+                    name="1"
                   />
                   <Form.Check
                     type="checkbox"

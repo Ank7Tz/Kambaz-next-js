@@ -8,7 +8,7 @@ import ModulesControlsButtons from "./ModulesControlsButton";
 
 export default function Modules() {
   return (
-    <div>
+    <div className="w-100">
       <ModulesControls />
       <br />
       <br />

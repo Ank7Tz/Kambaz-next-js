@@ -9,7 +9,7 @@ export default function CourseNavigation() {
     return currentPath.includes(path)
   }
   return (
-    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
+    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0 d-md-block d-none">
       <Link
         href="/Courses/1234/Home"
         id="wd-course-home-link"
