@@ -25,7 +25,7 @@ export default function Assignments() {
       </InputGroup>
       <Button
         variant="secondary"
-        className="p-2 me-2 fs-6 btn-secondary"
+        className="p-2 me-2 fs-6 btn-secondary d-block float-end"
         id="wd-add-assignment-group"
       >
         <GoPlus className="fs-6" />
@@ -33,12 +33,14 @@ export default function Assignments() {
       </Button>
       <Button
         variant="secondary"
-        className="p-2 btn-secondary"
+        className="p-2 me-2 fs-6 btn-secondary d-block float-end"
         id="wd-add-assignment"
       >
-        <GoPlus className="fs-5" />
+        <GoPlus className="fs-6" />
         Assignment
       </Button>
+      <br />
+      <br />
       <br />
       <br />
       <ListGroup id="wd-assignment-list">
@@ -66,7 +68,7 @@ export default function Assignments() {
                 className="me-2 text-success"
                 style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
               />
-              <div className="d-flex flex-column flex-grow-1">
+              <div className="d-flex flex-column flex-grow-1 p-2">
                 <Link
                   href="/Courses/1234/Assignments/123"
                   className="text-decoration-none text-black wd-assignment-link"

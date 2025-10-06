@@ -1,7 +1,7 @@
 export default function ZoomPage() {
     return (
         <div>
-            Zoom!
+            Zoom! Under construction!
         </div>
     )
 }

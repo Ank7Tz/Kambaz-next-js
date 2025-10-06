@@ -1,7 +1,7 @@
 export default function InboxPage() {
     return (
         <div>
-            Inbox Page!
+            Inbox Page! Under construction!
         </div>
     )
 }

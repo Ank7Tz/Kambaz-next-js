@@ -1,7 +1,7 @@
 export default function CalendarPage() {
     return (
         <div>
-            Calendar Page!
+            Calendar Page! Under construction!
         </div>
     );
 }

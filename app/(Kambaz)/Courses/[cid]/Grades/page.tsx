@@ -1,7 +1,7 @@
 export default function GradesPage() {
     return (
         <div>
-            Grades!
+            Grades! Under construction!
         </div>
     )
 }

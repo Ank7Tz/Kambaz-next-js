@@ -51,6 +51,18 @@ export default function PeopleTable() {
             <td className="wd-last-activity">2020-10-02</td>
             <td className="wd-total-activity">10:19:22</td>
           </tr>
+          <tr>
+            <td className="wd-full-name text-nowrap">
+              <FaUserCircle className="me-2 fs-1 text-secondary" />
+              <span className="wd-first-name">Klein</span>{" "}
+              <span className="wd-last-name">Moretti</span>
+            </td>
+            <td className="wd-login-id">001224242S</td>
+            <td className="wd-section">S101</td>
+            <td className="wd-role">STUDENT</td>
+            <td className="wd-last-activity">2020-10-12</td>
+            <td className="wd-total-activity">07:07:07</td>
+          </tr>
         </tbody>
       </Table>
     </div>

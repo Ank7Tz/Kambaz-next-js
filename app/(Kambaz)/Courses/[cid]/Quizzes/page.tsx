@@ -1,7 +1,7 @@
 export default function QuizzesPage() {
     return (
         <div>
-            Quizzes!
+            Quizzes! Under construction!
         </div>
     )
 }

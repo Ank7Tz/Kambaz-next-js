@@ -1,7 +1,7 @@
 export default function PiazzaPage() {
     return (
         <div>
-            Piazza!
+            Piazza! Under construction!
         </div>
     )
 }

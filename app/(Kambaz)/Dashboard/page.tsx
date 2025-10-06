@@ -9,8 +9,8 @@ export default function Dashboard() {
       <h2 id="wd-dashboard-published">Published Courses (7)</h2> <hr />
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4 ">
-          <Col className="wd-dashboard-course" style={{width: "300px"}}>
-            <Card>
+          <Col className="wd-dashboard-course">
+            <Card className="m-1">
               <Link
                 href="/Courses/1234"
                 className="wd-dashboard-course-link text-decoration-none text-dark"
@@ -36,8 +36,8 @@ export default function Dashboard() {
               </Link>
             </Card>
           </Col>
-          <Col className="wd-dashboard-course" style={{width: "300px"}}>
-            <Card>
+          <Col className="wd-dashboard-course">
+            <Card className="m-1">
               <Link
                 href="/Courses/2345"
                 className="wd-dashboard-course-link text-decoration-none text-dark"
@@ -64,8 +64,8 @@ export default function Dashboard() {
               </Link>
             </Card>
           </Col>
-          <Col className="wd-dashboard-course" style={{width: "300px"}}>
-            <Card>
+          <Col className="wd-dashboard-course">
+            <Card className="m-1">
               <Link
                 href="/Courses/3456"
                 className="wd-dashboard-course-link text-decoration-none text-dark"
@@ -92,8 +92,8 @@ export default function Dashboard() {
               </Link>
             </Card>
           </Col>
-          <Col className="wd-dashboard-course" style={{width: "300px"}}>
-            <Card>
+          <Col className="wd-dashboard-course">
+            <Card className="m-1">
               <Link
                 href="/Courses/4567"
                 className="wd-dashboard-course-link text-decoration-none text-dark"
@@ -120,8 +120,8 @@ export default function Dashboard() {
               </Link>
             </Card>
           </Col>
-          <Col className="wd-dashboard-course" style={{width: "300px"}}>
-            <Card>
+          <Col className="wd-dashboard-course">
+            <Card className="m-1">
               <Link
                 href="/Courses/5678"
                 className="wd-dashboard-course-link text-decoration-none text-dark"
@@ -148,8 +148,8 @@ export default function Dashboard() {
               </Link>
             </Card>
           </Col>
-          <Col className="wd-dashboard-course" style={{width: "300px"}}>
-            <Card>
+          <Col className="wd-dashboard-course">
+            <Card className="m-1">
               <Link
                 href="/Courses/6789"
                 className="wd-dashboard-course-link text-decoration-none text-dark"
@@ -176,8 +176,8 @@ export default function Dashboard() {
               </Link>
             </Card>
           </Col>
-          <Col className="wd-dashboard-course" style={{width: "300px"}}>
-            <Card>
+          <Col className="wd-dashboard-course">
+            <Card className="m-1">
               <Link
                 href="/Courses/9010"
                 className="wd-dashboard-course-link text-decoration-none text-dark"
