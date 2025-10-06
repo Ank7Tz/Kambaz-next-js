@@ -34,26 +34,20 @@ export default function KambazNavigation() {
       <ListGroup.Item
         as={Link}
         className={`border-0 text-center ${
-          isActive("/Account") ? "text-danger bg-white" : "text-white bg-black"
+          isActive("/Account") ? "text-white bg-black" : "text-white bg-black"
         } text-decoration-none`}
         href="/Account"
         id="wd-account-link"
       >
         <FaRegCircleUser
-          className={`fs-1 ${
-            isActive("/Account") ? "text-danger" : "text-white"
-          }`}
+          className="fs-1 text-white"
         />
         <br />
         Account
       </ListGroup.Item>
       <ListGroup.Item
         as={Link}
-        className={`border-0 text-center ${
-          isActive("/Dashboard")
-            ? "text-danger bg-white"
-            : "text-white bg-black"
-        } text-decoration-none`}
+        className="border-0 text-center text-danger bg-white text-decoration-none"
         href="/Dashboard"
         id="wd-dashboard-link"
       >
@@ -63,9 +57,7 @@ export default function KambazNavigation() {
       </ListGroup.Item>
       <ListGroup.Item
         as={Link}
-        className={`border-0 text-center ${
-          isActive("/Courses") ? "text-danger bg-white" : "text-white bg-black"
-        } text-decoration-none`}
+        className="border-0 text-center text-white bg-black text-decoration-none"
         href="/Dashboard"
         id="wd-course-link"
       >
@@ -75,9 +67,7 @@ export default function KambazNavigation() {
       </ListGroup.Item>
       <ListGroup.Item
         as={Link}
-        className={`border-0 text-center ${
-          isActive("/Calendar") ? "text-danger bg-white" : "text-white bg-black"
-        } text-decoration-none`}
+        className="border-0 text-center text-white bg-black text-decoration-none"
         href="/Calendar"
         id="wd-calendar-link"
       >
@@ -87,9 +77,7 @@ export default function KambazNavigation() {
       </ListGroup.Item>
       <ListGroup.Item
         as={Link}
-        className={`border-0 text-center ${
-          isActive("/Inbox") ? "text-danger bg-white" : "text-white bg-black"
-        } text-decoration-none`}
+        className="border-0 text-center text-white bg-black text-decoration-none"
         href="/Inbox"
         id="wd-inbox-link"
       >
@@ -99,11 +87,7 @@ export default function KambazNavigation() {
       </ListGroup.Item>
       <ListGroup.Item 
       as={Link}
-      className={`border-0 text-center ${
-          isActive("/Labs")
-            ? "text-danger bg-white"
-            : "text-white bg-black"
-        } text-decoration-none`}
+      className="border-0 text-center text-white bg-black text-decoration-none"
           href="/Labs"
           id="wd-labs-link"
         >
