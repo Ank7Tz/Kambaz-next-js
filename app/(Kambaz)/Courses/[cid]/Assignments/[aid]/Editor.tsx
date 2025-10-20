@@ -1,12 +1,12 @@
 "use client";
 
-import { assignments } from "@/app/(Kambaz)/Database";
+import { Assignment, assignments } from "@/app/(Kambaz)/Database";
 import { useParams } from "next/navigation";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
-  const assignment = assignments.find((a) => a._id === aid);
+  const assignment = assignments.find((a: Assignment) => a._id === aid);
   const formatDateForInput = (dateString: string | undefined) => {
     if (!dateString) return "";
     const date = new Date(dateString);

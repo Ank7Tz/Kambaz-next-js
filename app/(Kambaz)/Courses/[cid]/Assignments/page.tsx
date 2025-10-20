@@ -10,7 +10,7 @@ import { GoPlus } from "react-icons/go";
 import { MdOutlineAssignment } from "react-icons/md";
 import IndividualAssignmentControls from "./IndividualAssignmentControls";
 import { useParams } from "next/navigation";
-import { assignments } from "@/app/(Kambaz)/Database";
+import { Assignment, assignments } from "@/app/(Kambaz)/Database";
 
 export default function Assignments() {
   const { cid } = useParams();
@@ -71,8 +71,8 @@ export default function Assignments() {
         </ListGroup.Item>
         <ListGroup>
           {assign_list
-            .filter((assign: any) => assign.course === courseId)
-            .map((assign: any) => (
+            .filter((assign: Assignment) => assign.course === courseId)
+            .map((assign: Assignment) => (
               <ListGroup.Item
                 key={assign._id}
                 id="wd-assignment-list-item"
@@ -120,132 +120,6 @@ export default function Assignments() {
                 </div>
               </ListGroup.Item>
             ))}
-          {/* <ListGroup.Item
-            id="wd-assignment-list-item"
-            className="wd-assignment"
-          >
-            <div className="d-flex align-items-center">
-              <BsGripVertical
-                className="me-2"
-                style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
-              />
-              <MdOutlineAssignment
-                className="me-2 text-success"
-                style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
-              />
-              <div className="d-flex flex-column flex-grow-1 p-2">
-                <Link
-                  href="/Courses/1234/Assignments/123"
-                  className="text-decoration-none text-black wd-assignment-link"
-                >
-                  A1 - ENV + HTML
-                </Link>
-                <div>
-                  <span className="text-danger wd-assignment-list-item-modules">
-                    Multiple Modules
-                  </span>
-                  <span className="ms-2 me-2">|</span>
-                  <span className="fw-bold ">Not Available Until </span>
-                  <span className="wd-assignment-list-item-time-from">
-                    May 6 at 12:00 AM
-                  </span>
-                  <span className="ms-2 me-2">|</span>
-                  <span className="wd-assignment-list-item-time-due">
-                    Due May 13 at 11:59 PM
-                  </span>
-                  <span className="ms-2 me-2">|</span>
-                  <span className="wd-assignment-list-item-points">
-                    100 pts
-                  </span>
-                </div>
-              </div>
-              <IndividualAssignmentControls />
-            </div>
-          </ListGroup.Item>
-          <ListGroup.Item
-            id="wd-assignment-list-item"
-            className="wd-assignment"
-          >
-            <div className="d-flex align-items-center">
-              <BsGripVertical
-                className="me-2"
-                style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
-              />
-              <MdOutlineAssignment
-                className="me-2 text-success"
-                style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
-              />
-              <div className="d-flex flex-column flex-grow-1">
-                <Link
-                  href="/Courses/1234/Assignments/123"
-                  className="text-decoration-none text-black wd-assignment-link"
-                >
-                  A2 - CSS + BOOTSTRAP
-                </Link>
-                <div>
-                  <span className="text-danger wd-assignment-list-item-modules">
-                    Multiple Modules
-                  </span>
-                  <span className="ms-2 me-2">|</span>
-                  <span className="fw-bold">Not Available Until </span>
-                  <span className="wd-assignment-list-item-time-from">
-                    May 13 at 12:00 AM
-                  </span>
-                  <span className="ms-2 me-2">|</span>
-                  <span className="wd-assignment-list-item-time-due">
-                    Due May 20 at 11:59 PM
-                  </span>
-                  <span className="ms-2 me-2">|</span>
-                  <span className="wd-assignment-list-item-points">
-                    100 pts
-                  </span>
-                </div>
-              </div>
-              <IndividualAssignmentControls />
-            </div>
-          </ListGroup.Item>
-          <ListGroup.Item
-            id="wd-assignment-list-item"
-            className="wd-assignment"
-          >
-            <div className="d-flex align-items-center">
-              <BsGripVertical
-                className="me-2"
-                style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
-              />
-              <MdOutlineAssignment
-                className="me-2 text-success"
-                style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
-              />
-              <div className="d-flex flex-column flex-grow-1">
-                <Link
-                  href="/Courses/1234/Assignments/123"
-                  className="text-decoration-none text-black wd-assignment-link"
-                >
-                  A3 - JAVASCRIPT + REACT
-                </Link>
-                <div>
-                  <span className="text-danger wd-assignment-list-item-modules">
-                    Multiple Modules
-                  </span>
-                  <span className="ms-2 me-2">|</span>
-                  <span className="fw-bold">Not Available Until </span>
-                  <span className="wd-assignment-list-item-time-from">
-                    May 20 at 12:00 AM
-                  </span>
-                  <span className="ms-2 me-2">|</span>
-                  <span className="wd-assignment-list-item-time-due">
-                    Due May 27 at 11:59 PM
-                  </span>
-                  <span className="ms-2 me-2">|</span>
-                  <span className="wd-assignment-list-item-points">
-                    100 pts
-                  </span>
-                </div>
-              </div>
-              <IndividualAssignmentControls />
-            </div>
-          </ListGroup.Item> */}
         </ListGroup>
       </ListGroup>
     </div>
