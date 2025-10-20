@@ -9,8 +9,23 @@ import { IoSearchOutline } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
 import { MdOutlineAssignment } from "react-icons/md";
 import IndividualAssignmentControls from "./IndividualAssignmentControls";
+import { useParams } from "next/navigation";
+import { assignments } from "@/app/(Kambaz)/Database";
 
 export default function Assignments() {
+  const { cid } = useParams();
+  const courseId = Array.isArray(cid) ? cid[0] : cid;
+  const assign_list = assignments;
+  const formatDateTime = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
   return (
     <div id="wd-assignments">
       <InputGroup
@@ -55,7 +70,57 @@ export default function Assignments() {
           </div>
         </ListGroup.Item>
         <ListGroup>
-          <ListGroup.Item
+          {assign_list
+            .filter((assign: any) => assign.course === courseId)
+            .map((assign: any) => (
+              <ListGroup.Item
+                key={assign._id}
+                id="wd-assignment-list-item"
+                className="wd-assignment"
+              >
+                <div className="d-flex align-items-center">
+                  <BsGripVertical
+                    className="me-2"
+                    style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
+                  />
+                  <MdOutlineAssignment
+                    className="me-2 text-success"
+                    style={{ fontSize: "1.75rem", minWidth: "1.75rem" }}
+                  />
+                  <div className="d-flex flex-column flex-grow-1 p-2">
+                    <Link
+                      href={`/Courses/${courseId}/Assignments/${assign._id}`}
+                      className="text-decoration-none text-black wd-assignment-link"
+                    >
+                      {assign._id} - {assign.title}
+                    </Link>
+                    <div>
+                      <span className="text-danger wd-assignment-list-item-modules">
+                        Multiple Modules
+                      </span>
+                      <span className="ms-2 me-2">|</span>
+                      <span className="fw-bold ">Not Available Until </span>
+                      <span className="wd-assignment-list-item-time-from">
+                        {/* May 6 at 12:00 AM */}
+                        {formatDateTime(assign.availableFrom)}
+                      </span>
+                      <span className="ms-2 me-2">|</span>
+                      <span className="wd-assignment-list-item-time-due">
+                        {/* Due May 13 at 11:59 PM */}
+                        {formatDateTime(assign.dueDate)}
+                      </span>
+                      <span className="ms-2 me-2">|</span>
+                      <span className="wd-assignment-list-item-points">
+                        {/* 100 pts */}
+                        {assign.points} pts
+                      </span>
+                    </div>
+                  </div>
+                  <IndividualAssignmentControls />
+                </div>
+              </ListGroup.Item>
+            ))}
+          {/* <ListGroup.Item
             id="wd-assignment-list-item"
             className="wd-assignment"
           >
@@ -180,7 +245,7 @@ export default function Assignments() {
               </div>
               <IndividualAssignmentControls />
             </div>
-          </ListGroup.Item>
+          </ListGroup.Item> */}
         </ListGroup>
       </ListGroup>
     </div>
