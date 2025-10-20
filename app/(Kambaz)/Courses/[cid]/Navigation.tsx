@@ -23,7 +23,7 @@ export default function CourseNavigation({ cid }: { cid: string }) {
       id="wd-courses-navigation"
       className="wd list-group fs-5 rounded-0 d-md-block d-none"
     >
-      {links.map((link) => (
+      {links.map((link: string) => (
         <Link
           key={link}
           href={

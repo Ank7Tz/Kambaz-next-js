@@ -21,8 +21,8 @@ export default function Modules() {
       <br />
       <ListGroup id="wd-modules" className="rounded-0">
         {modules
-          .filter((module: any) => module.course === courseId)
-          .map((module: any) => (
+          .filter((module: db.Module) => module.course === courseId)
+          .map((module: db.Module) => (
             <ListGroup.Item
               key={module._id}
               className="wd-module p-0 mb-5 fs-5 border-gray"
@@ -34,7 +34,7 @@ export default function Modules() {
               </div>
               {module.lessons && (
                 <ListGroup className="wd-lessons rounded-0">
-                  {module.lessons.map((lesson: any) => (
+                  {module.lessons.map((lesson: db.Lesson) => (
                     <ListGroup.Item
                       key={lesson._id}
                       className="wd-lesson p-3 ps-1"
@@ -49,90 +49,6 @@ export default function Modules() {
             </ListGroup.Item>
           ))}
       </ListGroup>
-      {/* <ListGroup id="wd-modules" className="rounded-0">
-        <ListGroup.Item className="wd-module p-0 mb-5 fs-5 border-gray">
-          <div className="wd-title p-3 ps-2 bg-secondary">
-            <BsGripVertical />
-            Week 1
-            <ModulesControlsButtons />
-          </div>
-          <ListGroup className="wd-lessons rounded-0">
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <BsGripVertical />
-              LEARNING OBJECTIVES
-              <LessonControlButtons />
-            </ListGroup.Item>
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <BsGripVertical />
-              Introduction to the course
-              <LessonControlButtons />
-            </ListGroup.Item>
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <BsGripVertical />
-              Learn what is Web Development
-              <LessonControlButtons />
-            </ListGroup.Item>
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <BsGripVertical />
-              Full Stack Developer - Chapter 1 - Introduction
-              <LessonControlButtons />
-            </ListGroup.Item>
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <BsGripVertical />
-              Full Stack Developer - Chapter 2 - Creating User
-              <LessonControlButtons />
-            </ListGroup.Item>
-          </ListGroup>
-        </ListGroup.Item>
-        <ListGroup.Item className="wd-module p-0 mb-5 fs-5 border-gray">
-          <div className="wd-title p-3 ps-2 bg-secondary">
-            <BsGripVertical />
-            Week 2
-            <ModulesControlsButtons />
-          </div>
-          <ListGroup className="wd-lessons rounded-0">
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <BsGripVertical />
-              LEARNING OBJECTIVES
-              <LessonControlButtons />
-            </ListGroup.Item>
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <BsGripVertical />
-              Learn what is JavaScript
-              <LessonControlButtons />
-            </ListGroup.Item>
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <BsGripVertical />
-              Learn what is React
-              <LessonControlButtons />
-            </ListGroup.Item>
-          </ListGroup>
-        </ListGroup.Item>
-        <ListGroup.Item className="wd-module p-0 mb-5 fs-5 border-gray">
-          <div className="wd-title p-3 ps-2 bg-secondary">
-            <BsGripVertical />
-            Week 3
-            <ModulesControlsButtons />
-          </div>
-          <ListGroup className="wd-lessons rounded-0">
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <BsGripVertical />
-              LEARNING OBJECTIVES
-              <LessonControlButtons />
-            </ListGroup.Item>
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <BsGripVertical />
-              Frontend Development - Chapter 5 - Introduction to React
-              <LessonControlButtons />
-            </ListGroup.Item>
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <BsGripVertical />
-              Frontend Development - Chapter 6 - Introduction to NextJS
-              <LessonControlButtons />
-            </ListGroup.Item>
-          </ListGroup>
-        </ListGroup.Item>
-      </ListGroup> */}
     </div>
   );
 }
