@@ -9,7 +9,7 @@ import EventObject from "./EventObject";
 import ObjectStateVariable from "./ObjectStateVariable";
 import PassingDataOnEvent from "./PassingDataOnEvent";
 import PassingFunctions from "./PassingFunctions";
-import ReduxExamples from "./ReduxExamples/page";
+import ReduxExamples from "./ReduxExamples/index";
 import StringStateVariables from "./StringStateVariables";
 import store from "./store";
 import HelloRedux from "./ReduxExamples/HelloRedux";

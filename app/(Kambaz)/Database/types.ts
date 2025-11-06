@@ -24,9 +24,10 @@ export interface Course {
 export interface Module {
   _id: string;
   name: string;
-  description: string;
+  description?: string;
   course: string;
   lessons?: Lesson[];
+  editing?: boolean;
 }
 
 export interface Assignment {
