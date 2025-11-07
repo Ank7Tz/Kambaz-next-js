@@ -8,10 +8,12 @@ export default function Breadcrumb({
   course: { name: string } | undefined;
 }) {
   const pathname = usePathname();
+  const lastPathCheck = pathname.includes("Assignments/");
+  const part = lastPathCheck ? "Assignments" : pathname.split("/").pop();
   return (
     <span>
       Course {course?.name} {" "}
-      <span className="text-black">&gt;{" "} {pathname.split("/").pop()}</span>
+      <span className="text-black">{`> ${part}`}</span>
     </span>
   );
 }

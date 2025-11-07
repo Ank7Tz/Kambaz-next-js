@@ -1,12 +1,16 @@
 export interface User {
   _id: string;
   firstName: string;
+  username: string;
+  password: string;
   lastName: string;
   loginId: string;
   section: string;
   role: string;
   lastActivity: string;
   totalActivity: string;
+  dob?: string | Date;
+  email?: string;
 }
 
 export interface Course {
@@ -52,4 +56,14 @@ export interface Lesson {
   name: string;
   description: string;
   module: string;
+}
+
+export interface Profile {
+  username: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  dob: Date | string;
+  email: string;
+  role: string;
 }

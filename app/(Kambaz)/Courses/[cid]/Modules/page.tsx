@@ -21,6 +21,8 @@ export default function Modules() {
   const courseId = Array.isArray(cid) ? cid[0] : cid;
   const [moduleName, setModuleName] = useState("");
   const dispatch = useDispatch();
+  const {currentUser} = useSelector((state: AppRootState) => state.accountReducer);
+  const isFaculty = currentUser.role === "FACULTY";
   const addModuleHelper = () => {
     dispatch(
       addModule({
@@ -37,6 +39,7 @@ export default function Modules() {
         moduleName={moduleName}
         setModuleName={setModuleName}
         addModule={addModuleHelper}
+        isFaculty={isFaculty}
       />
       <br />
       <br />
@@ -77,6 +80,7 @@ export default function Modules() {
                   deleteModule={(moduleId: string) =>
                     dispatch(deleteModule(moduleId))
                   }
+                  isFaculty={isFaculty}
                 />
               </div>
               {module.lessons && (
