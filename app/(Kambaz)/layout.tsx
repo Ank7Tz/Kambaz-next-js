@@ -23,6 +23,7 @@ function ProtectedLayout({ children }: { children: ReactNode }) {
     // ✅ Use useEffect for redirect (side effect, not during render)
   useEffect(() => {
     if (!currentUser && !isPublicResource) {
+      alert("Please login first");
       router.push("/Account/Signin");
     }
   }, [currentUser, isPublicResource, router]);
