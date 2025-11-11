@@ -11,16 +11,16 @@ import { v4 as uuidv4 } from "uuid";
 import { AddEnrollment, RemoveEnrollment } from "../enrollmentsReducer";
 
 export default function Dashboard() {
-  const router = useRouter();
+  // const router = useRouter();
   const { currentUser } = useSelector(
     (state: AppRootState) => state.accountReducer
   );
-  useEffect(() => {
-    if (!currentUser) {
-      alert("Please signin to view dashboard");
-      router.push("/Account/Signin");
-    }
-  }, [currentUser]);
+  // useEffect(() => {
+  //   if (!currentUser) {
+  //     alert("Please signin to view dashboard");
+  //     router.push("/Account/Signin");
+  //   }
+  // }, [currentUser]);
 
   if (!currentUser) {
     return null;
