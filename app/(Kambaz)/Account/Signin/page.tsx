@@ -6,20 +6,13 @@ import { useDispatch } from "react-redux";
 import * as db from "../../Database";
 import { setCurrentUser } from "../reducer";
 import { redirect } from "next/navigation";
+import * as client from "../client";
 
 export default function Signin() {
-  const [credentials, setCredentials] = useState<{
-    username: string;
-    password: string;
-  }>({ username: "", password: "" });
+  const [credentials, setCredentials] = useState<db.Credentials>({ username: "", password: "" });
   const dispatch = useDispatch();
-  const signin = () => {
-    const user = db.users.find(
-      (u: db.User) =>
-        u.username === credentials.username &&
-        u.password === credentials.password
-    );
-    console.log(user);
+  const signin = async () => {
+    const user = await client.signin(credentials)
     if (!user) return;
     dispatch(setCurrentUser(user));
     redirect("/Dashboard");
