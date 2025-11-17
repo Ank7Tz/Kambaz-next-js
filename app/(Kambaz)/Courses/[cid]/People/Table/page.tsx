@@ -1,15 +1,16 @@
 "use client";
 
-import { Table, Button } from "react-bootstrap";
-import { FaUserCircle, FaPlus, FaEdit, FaTrash, FaUserPlus } from "react-icons/fa";
+import { Table, Button, Modal } from "react-bootstrap";
+import { FaUserCircle, FaPlus, FaEdit, FaTrash, FaUserPlus, FaUserTimes } from "react-icons/fa";
 import * as db from "../../../../Database";
 import { useParams } from "next/navigation";
-import { addToCourse, getAllUserForCourse, removeUserFromCourse } from "../client";
+import { addToCourse, getAllUserForCourse, removeUserFromCourse, updateUuser, createNewUser, deleteUser } from "../client";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { AppRootState } from "@/app/(Kambaz)/store";
 import AddUserModal from "../AddUserModal";
 import CreateUserModal from "../CreateUserModal";
+import EditUserModal from "../EditUserModal";
 
 export default function PeopleTable() {
   const { cid } = useParams();
@@ -17,6 +18,10 @@ export default function PeopleTable() {
   const [users, setUsers] = useState<db.User[]>([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [userToDelete, setUserToDelete] = useState<string | null>(null);
+  const [userToEdit, setUserToEdit] = useState<db.User | null>(null);
   const { currentUser } = useSelector(
     (state: AppRootState) => state.accountReducer
   );
@@ -37,9 +42,24 @@ export default function PeopleTable() {
     setShowCreateModal(true);
   };
 
-  const handleCreateUserSubmit = (user: Partial<db.User>) => {
-    // TODO: Implement create user logic
-    console.log("Creating and adding user to course:", user);
+  const handleCreateUserSubmit = async (user: Partial<db.User>) => {
+    try {
+      console.log("Creating and adding user to course:", user);
+      const newUser = await createNewUser(user as db.User);
+      
+      console.log("user created - " + newUser);
+      if (courseId && newUser._id) {
+        console.log("I am here");
+        await addToCourse(courseId, newUser._id);
+      }
+      
+      await fetchAllUsers();
+      
+      
+      setShowCreateModal(false);
+    } catch (error) {
+      console.error("Error creating user:", error);
+    }
   };
 
   const handleAddUserSubmit = async (userId: string) => {
@@ -51,7 +71,52 @@ export default function PeopleTable() {
   };
 
   const handleUpdateUser = (user: db.User) => {
-    console.log("Update user clicked for:", user);
+    setUserToEdit(user);
+    setShowEditModal(true);
+  };
+
+  const handleEditUserSave = async (updatedUser: db.User) => {
+    try {
+      console.log("Saving updated user:", updatedUser);
+      await updateUuser(updatedUser._id, updatedUser);
+      await fetchAllUsers();
+      setShowEditModal(false);
+      setUserToEdit(null);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
+
+  const handleUnenrollUser = async (userId: string) => {
+    console.log("Unenroll user clicked for:", userId);
+    if (courseId) {
+        await removeUserFromCourse(courseId, userId);
+        fetchAllUsers();
+      }
+  };
+
+  const handleDeleteClick = (userId: string) => {
+    setUserToDelete(userId);
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (userToDelete) {
+      try {
+        console.log("Delete user clicked for:", userToDelete);
+        await deleteUser(userToDelete);
+        await fetchAllUsers();
+      } catch (error) {
+        console.error("Error deleting user:", error);
+      }
+    }
+    setShowDeleteModal(false);
+    setUserToDelete(null);
+  };
+
+  const handleDeleteCancel = () => {
+    setShowDeleteModal(false);
+    setUserToDelete(null);
   };
 
   const handleDeleteUser = async (userId: string) => {
@@ -79,6 +144,30 @@ export default function PeopleTable() {
         onHide={() => setShowCreateModal(false)}
         onCreateUser={handleCreateUserSubmit}
       />
+
+      <EditUserModal
+        show={showEditModal}
+        onHide={() => setShowEditModal(false)}
+        onSave={handleEditUserSave}
+        user={userToEdit}
+      />
+
+      <Modal show={showDeleteModal} onHide={handleDeleteCancel}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete this user? This action cannot be undone.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDeleteCancel}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDeleteConfirm}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
       {isFaculty && (
         <div className="mb-3 d-flex justify-content-end gap-2">
@@ -134,9 +223,17 @@ export default function PeopleTable() {
                     <FaEdit />
                   </Button>
                   <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => handleUnenrollUser(user._id)}
+                    className="me-2"
+                  >
+                    <FaUserTimes />
+                  </Button>
+                  <Button
                     variant="danger"
                     size="sm"
-                    onClick={() => handleDeleteUser(user._id)}
+                    onClick={() => handleDeleteClick(user._id)}
                   >
                     <FaTrash />
                   </Button>

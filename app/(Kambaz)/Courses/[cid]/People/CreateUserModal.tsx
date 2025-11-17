@@ -42,13 +42,11 @@ export default function CreateUserModal({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement create user logic
     console.log("Creating user:", formData);
     onCreateUser(formData);
   };
 
   const handleClose = () => {
-    // Reset form
     setFormData({
       firstName: "",
       lastName: "",

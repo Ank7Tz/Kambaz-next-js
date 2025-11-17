@@ -27,6 +27,21 @@ export async function FindUsersByFirstName(firstName: string): Promise<User[]> {
 }
 
 export async function FindUserByUserId(userId: string): Promise<User[]> {
-    const {data} = await axiosWithCredentials.get(`${USER_API}/search/userId/${userId}`);
+    const { data } = await axiosWithCredentials.get(`${USER_API}/search/userId/${userId}`);
+    return data;
+}
+
+export async function createNewUser(user: User): Promise<User> {
+    const { data } = await axiosWithCredentials.post(`${USER_API}`, user);
+    return data;
+}
+
+export async function deleteUser(userId: string) {
+    const { data } = await axiosWithCredentials.delete(`${USER_API}/${userId}`);
+    return data;
+}
+
+export async function updateUuser(userId: string, user: User): Promise<User> {
+    const { data } = await axiosWithCredentials.post(`${USER_API}/FacultyControl/${userId}`, user);
     return data;
 }
