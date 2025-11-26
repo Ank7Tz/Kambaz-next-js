@@ -1,4 +1,5 @@
 "use client";
+import * as client from "../client";
 import { useEffect, useState } from "react";
 import { FormControl, Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +7,7 @@ import { AppRootState } from "../../store";
 import { redirect } from "next/navigation";
 import type { Profile } from "../../Database";
 import { setCurrentUser } from "../reducer";
+import { userAgent } from "next/server";
 export default function Profile() {
   const [profile, setProfile] = useState<Profile>({
     username: "",
@@ -42,10 +44,25 @@ export default function Profile() {
       });
     }
   };
-  const signout = () => {
+  const signout = async () => {
+    await client.signout();
     dispatch(setCurrentUser(null));
     redirect("/Account/Signin");
   };
+
+  const updateProfile = async () => {
+    const updatedProfile = await client.updateUser({...currentUser, 
+      username: profile.username,
+      password: profile.password,
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      dob: profile.dob,
+      email: profile.email,
+      role: profile.role,
+    });
+    dispatch(setCurrentUser(updatedProfile));
+  };
+
   useEffect(() => {
     fetchProfile();
   }, []);
@@ -118,6 +135,12 @@ export default function Profile() {
             <option value="FACULTY">Faculty</option>
             <option value="STUDENT">Student</option>
           </Form.Select>
+          <button
+            onClick={updateProfile}
+            className="btn btn-primary w-100 mb-2"
+          >
+            Update
+          </button>
           <Button onClick={signout} className="btn btn-danger w-100 mb-2">
             Sign out
           </Button>

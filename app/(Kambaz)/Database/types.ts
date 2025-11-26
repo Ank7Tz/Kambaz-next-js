@@ -67,3 +67,8 @@ export interface Profile {
   email: string;
   role: string;
 }
+
+export interface Credentials {
+  username: string;
+  password: string;
+}

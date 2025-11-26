@@ -10,23 +10,38 @@ import { GoPlus } from "react-icons/go";
 import { MdOutlineAssignment } from "react-icons/md";
 import IndividualAssignmentControls from "./IndividualAssignmentControls";
 import { useParams, useRouter } from "next/navigation";
-import { v4 as uuidv4 } from "uuid";
 import { AppRootState } from "@/app/(Kambaz)/store";
 import { useSelector } from "react-redux";
 import { Assignment } from "@/app/(Kambaz)/Database";
+import { useEffect, useState } from "react";
+import { fetchAllAssignmentsForCourse } from "./client";
 
 export default function Assignments() {
   const { cid } = useParams();
   const router = useRouter();
   const courseId = Array.isArray(cid) ? cid[0] : cid;
-  const { assignments } = useSelector(
-    (state: AppRootState) => state.assignmentReducer
-  );
+  // const { assignments } = useSelector(
+  //   (state: AppRootState) => state.assignmentReducer
+  // );
+  const [assignments, setAssignments] = useState<Assignment[]>([]);
+  const fetchAssignments = async () => {
+    console.log("courseId - " + courseId);
+    if (courseId) {
+      console.log("I am here");
+      const assigns = await fetchAllAssignmentsForCourse(courseId);
+      setAssignments(assigns);
+      console.log(assigns);
+    }
+  };
+
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
+
   const { currentUser } = useSelector(
     (state: AppRootState) => state.accountReducer
   );
   const isFaculty = currentUser.role === "FACULTY";
-  const assign_list = assignments;
   const formatDateTime = (dateString: string) => {
     const date = new Date(dateString);
     const month = date.toLocaleString("en-US", { month: "short" });
@@ -34,8 +49,8 @@ export default function Assignments() {
     return `${month} ${day} at 11:59 PM`;
   };
   const createAssignmentClick = () => {
-    const newAssignmentId = uuidv4();
-    router.push(`/Courses/${courseId}/Assignments/${newAssignmentId}`);
+    // const newAssignmentId = uuidv4();
+    router.push(`/Courses/${courseId}/Assignments/new_assignment`);
   };
   return (
     <div id="wd-assignments">
@@ -86,8 +101,7 @@ export default function Assignments() {
           </div>
         </ListGroup.Item>
         <ListGroup>
-          {assign_list
-            .filter((assign: Assignment) => assign.course === courseId)
+          {assignments
             .map((assign: Assignment) => (
               <ListGroup.Item
                 key={assign._id}
@@ -133,8 +147,10 @@ export default function Assignments() {
                     </div>
                   </div>
                   <IndividualAssignmentControls
+                    courseId={assign.course}
                     assignId={assign._id}
                     assignTitle={assign.title}
+                    onDeleteCallback={fetchAssignments}
                   />
                 </div>
               </ListGroup.Item>

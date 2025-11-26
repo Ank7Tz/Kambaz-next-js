@@ -6,13 +6,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeAssignment } from "./reducer";
 import { Button, Modal } from "react-bootstrap";
 import { AppRootState } from "@/app/(Kambaz)/store";
+import { deleteAssignment } from "./client";
 
 export default function IndividualAssignmentControls({
+  courseId,
   assignId,
   assignTitle,
+  onDeleteCallback,
 }: {
+  courseId: string;
   assignId: string;
   assignTitle: string;
+  onDeleteCallback: () => void;
 }) {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
@@ -25,8 +30,14 @@ export default function IndividualAssignmentControls({
     setShowModal(true);
   };
 
+  const deleteHelper = async() => {
+    await deleteAssignment(courseId, assignId);
+    onDeleteCallback();
+  }
+
   const handleConfirmDelete = () => {
-    dispatch(removeAssignment(assignId));
+    // dispatch(removeAssignment(assignId));
+    deleteHelper();
     setShowModal(false);
   };
 

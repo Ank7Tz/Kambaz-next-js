@@ -7,13 +7,17 @@ export interface ModulesType {
 };
 
 const initialState = {
-    modules: modules,
+    modules: [] as Module[],
 };
 
 const modulesSlice = createSlice({
     name: "modules",
     initialState,
     reducers: {
+        setModules: (state, { payload: modules }: {payload: Module[]}) => {
+            state.modules = modules;
+        },
+
         addModule: (state, { payload: module }: { payload: Module }) => {
             const newModule: Module = {
                 _id: uuidv4(),
@@ -38,5 +42,5 @@ const modulesSlice = createSlice({
     }
 });
 
-export const {addModule, deleteModule, updateModule, editModule} = modulesSlice.actions;
+export const { addModule, deleteModule, updateModule, editModule, setModules } = modulesSlice.actions;
 export default modulesSlice.reducer;

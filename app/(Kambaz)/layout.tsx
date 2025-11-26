@@ -5,6 +5,7 @@ import "./styles.css";
 import { Provider, useSelector } from "react-redux";
 import store, { AppRootState } from "./store";
 import { usePathname, useRouter } from "next/navigation";
+import Session from "./Account/Session";
 
 function ProtectedLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -20,23 +21,18 @@ function ProtectedLayout({ children }: { children: ReactNode }) {
     pathname.startsWith(route)
   );
 
-    // ✅ Use useEffect for redirect (side effect, not during render)
   useEffect(() => {
+    if (currentUser && isPublicResource) {
+      router.push("/Dashboard");
+    }
     if (!currentUser && !isPublicResource) {
-      alert("Please login first");
       router.push("/Account/Signin");
     }
-  }, [currentUser, isPublicResource, router]);
+  }, [isPublicResource, router]);
 
-  // ✅ Early return to prevent rendering protected content
   if (!currentUser && !isPublicResource) {
     return null;
   }
-  
-  // if (!currentUser && !isPublicResource) {
-  //   router.push("/Account/Signin");
-  //   return null;
-  // }
 
   return (
     <div id="wd-kambaz">
@@ -55,7 +51,9 @@ export default function KambazLayout({
 }: Readonly<{ children: ReactNode }>) {
   return (
     <Provider store={store}>
-      <ProtectedLayout>{children}</ProtectedLayout>
+      <Session>
+        <ProtectedLayout>{children}</ProtectedLayout>
+      </Session>
     </Provider>
   );
 }

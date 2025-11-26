@@ -62,13 +62,29 @@ export default function TOC() {
         </NavLink>{" "}
       </NavItem>
       <NavItem>
+        <NavLink
+          href="/Labs/Lab5"
+          as={Link}
+          // className={`nav-link ${pathname.endsWith("Lab3") ? "active" : ""}`}
+          className="nav-link"
+          active={pathname.includes("/Lab5")}
+        >
+          Lab 5{" "}
+        </NavLink>{" "}
+      </NavItem>
+      <NavItem>
         <NavLink href="/" as={Link}>
           Kambaz{" "}
         </NavLink>{" "}
       </NavItem>
       <NavItem>
-        <NavLink href="https://github.com/Ank7Tz/Kambaz-next-js/tree/a4">
-          My GitHub
+        <NavLink href="https://github.com/Ank7Tz/Kambaz-next-js/tree/a5">
+          My Github Frontend repo
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="https://github.com/Ank7Tz/kambaz-node-server-app/tree/a5">
+          My Github Backend repo
         </NavLink>
       </NavItem>
     </Nav>

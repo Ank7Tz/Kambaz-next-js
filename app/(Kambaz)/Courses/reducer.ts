@@ -7,7 +7,7 @@ export interface CoursesType {
 };
 
 const initialState = {
-    courses: courses
+    courses: [] as Course[]
 };
 
 const coursesSlice = createSlice({

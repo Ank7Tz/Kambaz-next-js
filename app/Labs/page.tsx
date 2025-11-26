@@ -25,9 +25,27 @@ export default function Labs() {
           </Link>
         </li>
         <li>
+          <Link href="/Labs/Lab5" id="wd-lab4-link">
+            Lab 5: Server-Side - Express
+          </Link>
+        </li>
+        <li>
           <Link href="/" id="wd-kambaz-link">
             kambaz{" "}
           </Link>
+        </li>
+        <li>
+          <Link href="https://github.com/Ank7Tz/Kambaz-next-js/tree/a5" id="wd-kambaz-link">
+            My Github repo for Frontend
+          </Link>
+        </li>
+        <li>
+          <Link href="https://github.com/Ank7Tz/kambaz-node-server-app/tree/a5" id="wd-kambaz-link">
+            My Github repo for Backend
+          </Link>
+        </li>
+        <li>
+            Render.com Deployment - https://kambaz-node-server-app-qezh.onrender.com
         </li>
       </ul>
       <footer>
