@@ -31,7 +31,7 @@ export default function IndividualAssignmentControls({
   };
 
   const deleteHelper = async() => {
-    await deleteAssignment(courseId, assignId);
+    await deleteAssignment(assignId);
     onDeleteCallback();
   }
 

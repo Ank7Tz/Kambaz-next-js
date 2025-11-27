@@ -10,17 +10,15 @@ import { fetchAssignment } from "../client";
 
 export default function AssignmentDisplay() {
   const { cid, aid } = useParams();
-  // const { assignments } = useSelector((state: AppRootState) => state.assignmentReducer);
 
   const courseId = Array.isArray(cid) ? cid[0] : cid || "";
   const assignmentId = Array.isArray(aid) ? aid[0] : aid;
-  // const assignment = assignments.find((assign: Assignment) => assign._id === assignmentId);
 
   const [assignment, setAssignment] = useState<Assignment>();
 
   const fetchAssignmentHelper = async () => {
     if (assignmentId) {
-      const data = await fetchAssignment(courseId, assignmentId);
+      const data = await fetchAssignment(assignmentId);
       setAssignment(data);
     }
   };

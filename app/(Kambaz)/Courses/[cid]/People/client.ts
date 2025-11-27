@@ -5,20 +5,20 @@ const axiosWithCredentials = axios.create({ withCredentials: true });
 
 const HTTP_SERVER = process.env.NEXT_PUBLIC_HTTP_SERVER;
 
-const ENROLLMENT_API = `${HTTP_SERVER}/api/enrollments`;
 const USER_API = `${HTTP_SERVER}/api/users`;
+const COURSE_API = `${HTTP_SERVER}/api/courses`;
 
 export async function getAllUserForCourse(courseId: string): Promise<User[]> {
-    const { data } = await axiosWithCredentials.get(`${ENROLLMENT_API}/${courseId}`);
+    const { data } = await axiosWithCredentials.get(`${COURSE_API}/${courseId}/users`);
     return data;
 };
 
 export async function addToCourse(courseId: string, userId: string) {
-    await axiosWithCredentials.put(`${ENROLLMENT_API}/${userId}/${courseId}`);
+    await axiosWithCredentials.put(`${USER_API}/${userId}/courses/${courseId}`);
 }
 
 export async function removeUserFromCourse(courseId: string, userId: string) {
-    await axiosWithCredentials.delete(`${ENROLLMENT_API}/${userId}/${courseId}`);
+    await axiosWithCredentials.delete(`${USER_API}/${userId}/courses/${courseId}`);
 }
 
 export async function FindUsersByFirstName(firstName: string): Promise<User[]> {
@@ -27,7 +27,7 @@ export async function FindUsersByFirstName(firstName: string): Promise<User[]> {
 }
 
 export async function FindUserByUserId(userId: string): Promise<User[]> {
-    const { data } = await axiosWithCredentials.get(`${USER_API}/search/userId/${userId}`);
+    const { data } = await axiosWithCredentials.get(`${USER_API}/${userId}`);
     return data;
 }
 
@@ -41,7 +41,7 @@ export async function deleteUser(userId: string) {
     return data;
 }
 
-export async function updateUuser(userId: string, user: User): Promise<User> {
+export async function updateUser(userId: string, user: User): Promise<User> {
     const { data } = await axiosWithCredentials.post(`${USER_API}/FacultyControl/${userId}`, user);
     return data;
 }
