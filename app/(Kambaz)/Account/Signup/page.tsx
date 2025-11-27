@@ -17,7 +17,7 @@ export default function Signin() {
     lastName: "",
     loginId: "",
     section: "",
-    role: "",
+    role: "STUDENT",
     lastActivity: "",
     totalActivity: "",
     dob: "",

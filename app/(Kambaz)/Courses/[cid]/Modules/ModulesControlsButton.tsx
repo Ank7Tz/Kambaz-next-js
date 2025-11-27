@@ -12,7 +12,7 @@ export default function ModulesControlsButtons({
 }: {
   moduleId: string;
   editModule: (moduleId: string) => void;
-  deleteModule: (courseId: string, moduleId: string) => void;
+  deleteModule: (moduleId: string) => void;
   isFaculty: boolean;
 }) {
   const dispatch = useDispatch();

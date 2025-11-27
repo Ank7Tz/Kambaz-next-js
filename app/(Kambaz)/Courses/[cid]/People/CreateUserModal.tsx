@@ -26,6 +26,7 @@ export default function CreateUserModal({
     role: "STUDENT",
     lastActivity: "",
     totalActivity: "00:00:00",
+    dob: "",
   });
 
   const handleChange = (
