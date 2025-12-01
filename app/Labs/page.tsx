@@ -45,7 +45,7 @@ export default function Labs() {
           </Link>
         </li>
         <li>
-            Render.com Deployment - https://kambaz-node-server-app-qezh.onrender.com
+            Render.com Deployment - https://kambaz-node-server-app-s5cq.onrender.com (for branch a6)
         </li>
       </ul>
       <footer>
