@@ -42,7 +42,7 @@ export default function AssignmentEditor() {
   }
 
   const fetchAssignmentHelper = async () => {
-    const data = await fetchAssignment(courseId, assignmentId);
+    const data = await fetchAssignment(assignmentId);
     setAssignment(data);
   };
 
@@ -51,18 +51,13 @@ export default function AssignmentEditor() {
   };
 
   const updateAssignmentHelper = async () => {
-    const data = await updateAssignment(courseId, assignmentId, assignment);
+    const data = await updateAssignment(assignmentId, assignment);
   };
 
   useEffect(() => {
     if (!isNewAssignment) {
       fetchAssignmentHelper();
     }
-    // const assign = assignments.find((a: Assignment) => a._id === aid);
-    // if (assign) {
-    //   setAssignment(assign);
-    //   setIsNewAssignment(false);
-    // }
   }, []);
 
   const formatDateForInput = (dateString: string | undefined) => {
@@ -75,9 +70,7 @@ export default function AssignmentEditor() {
   const saveButtonClick = () => {
     if (isNewAssignment) {
       createAssignmentHelper();
-      // dispatch(createAssignment(assignment));
     } else {
-      // dispatch(updateAssignment(assignment));
       updateAssignmentHelper();
     }
     router.push(`/Courses/${courseId}/Assignments`);

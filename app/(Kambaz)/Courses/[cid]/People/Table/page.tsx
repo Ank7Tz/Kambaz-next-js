@@ -1,10 +1,24 @@
 "use client";
 
 import { Table, Button, Modal } from "react-bootstrap";
-import { FaUserCircle, FaPlus, FaEdit, FaTrash, FaUserPlus, FaUserTimes } from "react-icons/fa";
+import {
+  FaUserCircle,
+  FaPlus,
+  FaEdit,
+  FaTrash,
+  FaUserPlus,
+  FaUserTimes,
+} from "react-icons/fa";
 import * as db from "../../../../Database";
 import { useParams } from "next/navigation";
-import { addToCourse, getAllUserForCourse, removeUserFromCourse, updateUuser, createNewUser, deleteUser } from "../client";
+import {
+  addToCourse,
+  getAllUserForCourse,
+  removeUserFromCourse,
+  updateUser,
+  createNewUser,
+  deleteUser,
+} from "../client";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { AppRootState } from "@/app/(Kambaz)/store";
@@ -46,16 +60,15 @@ export default function PeopleTable() {
     try {
       console.log("Creating and adding user to course:", user);
       const newUser = await createNewUser(user as db.User);
-      
+
       console.log("user created - " + newUser);
       if (courseId && newUser._id) {
         console.log("I am here");
         await addToCourse(courseId, newUser._id);
       }
-      
+
       await fetchAllUsers();
-      
-      
+
       setShowCreateModal(false);
     } catch (error) {
       console.error("Error creating user:", error);
@@ -78,7 +91,7 @@ export default function PeopleTable() {
   const handleEditUserSave = async (updatedUser: db.User) => {
     try {
       console.log("Saving updated user:", updatedUser);
-      await updateUuser(updatedUser._id, updatedUser);
+      await updateUser(updatedUser._id, updatedUser);
       await fetchAllUsers();
       setShowEditModal(false);
       setUserToEdit(null);
@@ -90,9 +103,9 @@ export default function PeopleTable() {
   const handleUnenrollUser = async (userId: string) => {
     console.log("Unenroll user clicked for:", userId);
     if (courseId) {
-        await removeUserFromCourse(courseId, userId);
-        fetchAllUsers();
-      }
+      await removeUserFromCourse(courseId, userId);
+      fetchAllUsers();
+    }
   };
 
   const handleDeleteClick = (userId: string) => {
@@ -117,14 +130,6 @@ export default function PeopleTable() {
   const handleDeleteCancel = () => {
     setShowDeleteModal(false);
     setUserToDelete(null);
-  };
-
-  const handleDeleteUser = async (userId: string) => {
-    console.log("Delete user clicked for:", userId);
-    if (courseId) {
-      await removeUserFromCourse(courseId, userId);
-      fetchAllUsers();
-    }
   };
 
   useEffect(() => {
@@ -157,7 +162,8 @@ export default function PeopleTable() {
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to delete this user? This action cannot be undone.
+          Are you sure you want to delete this user? This action cannot be
+          undone.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleDeleteCancel}>
@@ -171,17 +177,11 @@ export default function PeopleTable() {
 
       {isFaculty && (
         <div className="mb-3 d-flex justify-content-end gap-2">
-          <Button
-            variant="success"
-            onClick={handleCreateUser}
-          >
+          <Button variant="success" onClick={handleCreateUser}>
             <FaUserPlus className="me-2" />
             Create User
           </Button>
-          <Button
-            variant="primary"
-            onClick={handleAddUser}
-          >
+          <Button variant="primary" onClick={handleAddUser}>
             <FaPlus className="me-2" />
             Add User
           </Button>

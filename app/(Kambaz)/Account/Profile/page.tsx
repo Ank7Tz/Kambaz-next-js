@@ -121,6 +121,7 @@ export default function Profile() {
             id="wd-email"
             type="email"
             value={profile.email}
+            placeholder="emailId"
             onChange={(e) => setProfile({ ...profile, email: e.target.value })}
             className="mb-2"
           />

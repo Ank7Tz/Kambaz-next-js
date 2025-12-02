@@ -21,9 +21,21 @@ export default function AccountNavigation() {
             className={`list-group-item ${
               isActive(link) ? "active" : "text-danger"
             } border-0`}
-          >{link}</Link>
+          >
+            {link}
+          </Link>
         );
       })}
+      {currentUser && currentUser.role === "ADMIN" && (
+        <Link
+          href={`/Account/Users`}
+          className={`list-group-item ${
+            isActive("Users") ? "active" : "text-danger"
+          } border-0`}
+        >
+          Users
+        </Link>
+      )}
     </div>
   );
 }
