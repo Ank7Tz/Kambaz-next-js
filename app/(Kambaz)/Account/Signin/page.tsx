@@ -61,10 +61,10 @@ export default function Signin() {
       <div className="mt-5">
         <h5 className="mb-3">Team Members</h5>
         <ul className="list-unstyled">
-          <li>Ankit Bando</li>
-          <li>Atul Kumar Tiwary</li>
-          <li>Poorna Abhijith Patel</li>
-          <li>Yu Ye</li>
+          <li>Ankit Bando (SEC 04)</li>
+          <li>Atul Kumar Tiwary (SEC 04)</li>
+          <li>Poorna Abhijith Patel (SEC 04)</li>
+          <li>Yu Ye (SEC 04)</li>
         </ul>
 
         <h5 className="mb-3 mt-4">GitHub Repositories</h5>
