@@ -1,5 +1,3 @@
-// app/(kambaz)/Courses/[cid]/Quizzes/page.tsx
-// Main Quizzes List Page - displays all quizzes for a course
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 "use client";
@@ -25,7 +23,12 @@ export default function Quizzes() {
   const fetchQuizzes = async () => {
     try {
       const quizzes = await quizClient.getQuizzesForCourse(cid as string);
-      setQuizzes(quizzes);
+      const sortedQuizzes = quizzes.sort((a, b) => {
+        const dateA = a.availableDate ? new Date(a.availableDate).getTime() : 0;
+        const dateB = b.availableDate ? new Date(b.availableDate).getTime() : 0;
+        return dateA - dateB;
+      });
+      setQuizzes(sortedQuizzes);
     } catch (error) {
       console.error("Error fetching quizzes:", error);
       setQuizzes([]);
