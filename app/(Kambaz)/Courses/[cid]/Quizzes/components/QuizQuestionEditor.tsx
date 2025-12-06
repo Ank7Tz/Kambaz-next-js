@@ -190,6 +190,34 @@ export default function QuizQuestionsEditor() {
     }
   };
 
+  const handleSaveAndPublish = async () => {
+    try {
+      if (!cid || !qid || !quiz) {
+        throw new Error("Course ID or Quiz ID is missing");
+      }
+      
+      // If quiz is not published, publish it
+      if (!quiz.published) {
+        await quizClient.publishQuiz(cid as string, qid as string);
+      }
+      
+      setSaveStatus({
+        type: "success",
+        message: quiz.published ? "Quiz questions saved successfully!" : "Quiz saved and published successfully!"
+      });
+      
+      setTimeout(() => {
+        router.push(`/Courses/${cid}/Quizzes`);
+      }, 1000);
+    } catch (error) {
+      console.error("Error saving and publishing quiz:", error);
+      setSaveStatus({
+        type: "danger",
+        message: "Error saving and publishing quiz."
+      });
+    }
+  };
+
   const handleCancel = () => {
     router.push(`/Courses/${cid}/Quizzes/${qid}/details`);
   };
@@ -297,6 +325,14 @@ export default function QuizQuestionsEditor() {
               </Button>
               <Button variant="danger" onClick={handleSave} disabled={questions.length === 0}>
                 Save
+              </Button>
+              <Button 
+                variant="success" 
+                className="ms-2"
+                onClick={handleSaveAndPublish} 
+                disabled={questions.length === 0}
+              >
+                {quiz?.published ? "Save" : "Save & Publish"}
               </Button>
             </div>
           </Tab.Pane>
