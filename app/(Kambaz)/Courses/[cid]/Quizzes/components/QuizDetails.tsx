@@ -76,6 +76,30 @@ export default function QuizDetails() {
     }
   };
 
+  const handlePublish = async () => {
+    try {
+      const status = await quizClient.publishQuiz(cid as string, qid as string);
+      if (status === 200) {
+        setQuiz({ ...quiz!, published: true });
+      }
+    } catch (error) {
+      console.error("Failed to publish quiz:", error);
+      alert("Failed to publish quiz. Please try again.");
+    }
+  };
+
+  const handleUnpublish = async () => {
+    try {
+      const status = await quizClient.unpublishQuiz(cid as string, qid as string);
+      if (status === 200) {
+        setQuiz({ ...quiz!, published: false });
+      }
+    } catch (error) {
+      console.error("Failed to unpublish quiz:", error);
+      alert("Failed to unpublish quiz. Please try again.");
+    }
+  };
+
   if (loading) {
     return (
       <div className="text-center p-5">
@@ -143,12 +167,20 @@ export default function QuizDetails() {
               <CiEdit className="ms-2" />
             </Button>
           </Link>
+          {!quiz.published ? (
+            <Button variant="success" onClick={handlePublish}>
+              Publish Quiz
+            </Button>
+          ) : (
+            <Button variant="warning" onClick={handleUnpublish}>
+              Unpublish Quiz
+            </Button>
+          )}
         </div>
       )}
 
       <hr />
       
-      {/* Quiz Details */}
       <div>
         <h1 className="mb-5">{quiz.title}</h1>
         <div id="wd-details" className="ms-5 mt-3 mb-5 w-50">

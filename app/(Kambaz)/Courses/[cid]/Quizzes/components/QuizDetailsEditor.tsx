@@ -99,15 +99,20 @@ export default function QuizDetailsEditor() {
 
   const handleSaveAndPublish = async () => {
     try {
-      await handleSave();
+      if (!cid || !qid) {
+        throw new Error("Course ID or Quiz ID is missing");
+      }
+      
+      await quizClient.updateQuiz(cid as string, qid as string, quiz);
       await publishQuiz();
+      router.push(`/Courses/${cid}/Quizzes`);
     } catch (error) {
       console.error("Error saving and publishing:", error);
     }
   };
 
   const handleCancel = () => {
-    router.push(`/Courses/${cid}/Quizzes/${qid}/details`);
+    router.push(`/Courses/${cid}/Quizzes`);
   };
 
   const calculateTotalPoints = () => {
