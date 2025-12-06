@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -10,7 +11,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import type { Quiz, Question, QuizAttempt, MultipleChoiceQuestion, FillInBlankQuestion } from "../types";
 
 export default function QuizResults() {
-  const { cid, qid, attemptId } = useParams();
+  const { cid, qid } = useParams();
   const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [attempt, setAttempt] = useState<QuizAttempt | null>(null);
