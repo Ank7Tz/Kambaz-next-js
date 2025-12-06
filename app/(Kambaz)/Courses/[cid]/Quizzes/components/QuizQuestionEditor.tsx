@@ -16,8 +16,12 @@ export default function QuizQuestionsEditor() {
   const { cid, qid } = useParams();
   const router = useRouter();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const [saveStatus, setSaveStatus] = useState<{ type: string; message: string } | null>(null);
-  const [newQuestionType, setNewQuestionType] = useState<string>("multiple-choice");
+  const [saveStatus, setSaveStatus] = useState<{
+    type: string;
+    message: string;
+  } | null>(null);
+  const [newQuestionType, setNewQuestionType] =
+    useState<string>("multiple-choice");
   const [questions, setQuestions] = useState<Question[]>([]);
   const [quiz, setQuiz] = useState<Quiz | null>(null);
 
@@ -30,12 +34,18 @@ export default function QuizQuestionsEditor() {
   const getQuiz = async () => {
     if (qid && cid) {
       try {
-        const fetchedQuiz = await quizClient.findQuizById(cid as string, qid as string);
-        const fetchedQuizQuestions = await quizClient.getQuestionsForQuiz(cid as string, qid as string);
-        
+        const fetchedQuiz = await quizClient.findQuizById(
+          cid as string,
+          qid as string
+        );
+        const fetchedQuizQuestions = await quizClient.getQuestionsForQuiz(
+          cid as string,
+          qid as string
+        );
+
         const formattedQuestions = fetchedQuizQuestions.map((q: Question) => ({
           ...q,
-          isEditing: false
+          isEditing: false,
         }));
 
         setQuiz(fetchedQuiz);
@@ -44,7 +54,7 @@ export default function QuizQuestionsEditor() {
         console.error("Error fetching quiz:", error);
         setSaveStatus({
           type: "danger",
-          message: "Error loading quiz questions."
+          message: "Error loading quiz questions.",
         });
       }
     }
@@ -56,7 +66,7 @@ export default function QuizQuestionsEditor() {
 
   const handleAddQuestion = async () => {
     let newQuestion: Question;
-    
+
     const baseQuestion = {
       _id: uuidv4(),
       quiz: qid as string,
@@ -64,99 +74,110 @@ export default function QuizQuestionsEditor() {
       title: "New Question",
       question: "Enter your question here",
       points: 1,
-      isEditing: true
+      isEditing: true,
     };
-    
+
     if (newQuestionType === "multiple-choice") {
       newQuestion = {
         ...baseQuestion,
         type: "multiple-choice",
         choices: ["Option 1", "Option 2", "Option 3", "Option 4"],
-        correctAnswer: 0 // Index of correct choice
+        correctAnswer: 0, // Index of correct choice
       };
     } else if (newQuestionType === "true-false") {
       newQuestion = {
         ...baseQuestion,
         type: "true-false",
-        correctAnswer: false 
+        correctAnswer: false,
       };
     } else {
       newQuestion = {
         ...baseQuestion,
         type: "fill-in-blank",
-        possibleAnswers: [""]
+        possibleAnswers: [""],
       };
     }
-    
+
     try {
-      const created = await quizClient.createQuestion(cid as string, qid as string, newQuestion);
+      const created = await quizClient.createQuestion(
+        cid as string,
+        qid as string,
+        newQuestion
+      );
       setQuestions([...questions, { ...created, isEditing: true }]);
     } catch (error) {
       console.error("Error creating question:", error);
       setSaveStatus({
         type: "danger",
-        message: "Error creating question."
+        message: "Error creating question.",
       });
     }
   };
 
-  const handleSaveQuestion = async (questionId: string, updatedQuestion: Question) => {
+  const handleSaveQuestion = async (
+    questionId: string,
+    updatedQuestion: Question
+  ) => {
     try {
       updatedQuestion.isEditing = false;
       await quizClient.updateQuestion(
-        cid as string, 
-        qid as string, 
-        questionId, 
+        cid as string,
+        qid as string,
+        questionId,
         updatedQuestion
       );
-      
-      setQuestions(questions.map((q) => 
-        q._id === questionId ? updatedQuestion : q
-      ));
-      
+
+      setQuestions(
+        questions.map((q) => (q._id === questionId ? updatedQuestion : q))
+      );
+
       setSaveStatus({
         type: "success",
-        message: "Question updated successfully!"
+        message: "Question updated successfully!",
       });
       setTimeout(() => setSaveStatus(null), 3000);
     } catch (error) {
       console.error("Error saving question:", error);
       setSaveStatus({
         type: "danger",
-        message: "Error saving question."
+        message: "Error saving question.",
       });
     }
   };
 
   const handleEditQuestion = (questionId: string) => {
-    setQuestions(questions.map((q) => ({
-      ...q,
-      isEditing: q._id === questionId
-    })));
+    setQuestions(
+      questions.map((q) => ({
+        ...q,
+        isEditing: q._id === questionId,
+      }))
+    );
   };
 
   const handleCancelEdit = (questionId: string) => {
-    setQuestions(questions.map((q) => ({
-      ...q,
-      isEditing: false
-    })));
+    setQuestions(
+      questions.map((q) => ({
+        ...q,
+        isEditing: false,
+      }))
+    );
   };
 
   const handleDeleteQuestion = async (questionId: string) => {
     try {
       await quizClient.deleteQuestion(cid as string, qid as string, questionId);
       setQuestions(questions.filter((q) => q._id !== questionId));
-      
+
       setSaveStatus({
         type: "warning",
-        message: "Question deleted."
+        message: "Question deleted.",
       });
       setTimeout(() => setSaveStatus(null), 3000);
     } catch (error) {
       console.error("Error deleting question:", error);
       setSaveStatus({
         type: "danger",
-        message: "Error deleting question."
+        message: "Error deleting question.",
       });
     }
   };
@@ -170,14 +191,14 @@ export default function QuizQuestionsEditor() {
       if (!cid || !qid || !quiz) {
         throw new Error("Course ID or Quiz ID is missing");
       }
-      
+
       // Quiz points are automatically updated by backend when questions change
       // Just navigate back
       setSaveStatus({
         type: "success",
-        message: "Quiz questions saved successfully!"
+        message: "Quiz questions saved successfully!",
       });
-      
+
       setTimeout(() => {
         router.push(`/Courses/${cid}/Quizzes/${qid}/details`);
       }, 1000);
@@ -185,7 +206,7 @@ export default function QuizQuestionsEditor() {
       console.error("Error saving quiz:", error);
       setSaveStatus({
         type: "danger",
-        message: "Error saving quiz questions."
+        message: "Error saving quiz questions.",
       });
     }
   };
@@ -195,17 +216,19 @@ export default function QuizQuestionsEditor() {
       if (!cid || !qid || !quiz) {
         throw new Error("Course ID or Quiz ID is missing");
       }
-      
+
       // If quiz is not published, publish it
       if (!quiz.published) {
         await quizClient.publishQuiz(cid as string, qid as string);
       }
-      
+
       setSaveStatus({
         type: "success",
-        message: quiz.published ? "Quiz questions saved successfully!" : "Quiz saved and published successfully!"
+        message: quiz.published
+          ? "Quiz questions saved successfully!"
+          : "Quiz saved and published successfully!",
       });
-      
+
       setTimeout(() => {
         router.push(`/Courses/${cid}/Quizzes`);
       }, 1000);
@@ -213,7 +236,7 @@ export default function QuizQuestionsEditor() {
       console.error("Error saving and publishing quiz:", error);
       setSaveStatus({
         type: "danger",
-        message: "Error saving and publishing quiz."
+        message: "Error saving and publishing quiz.",
       });
     }
   };
@@ -227,7 +250,9 @@ export default function QuizQuestionsEditor() {
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h4>Edit Quiz Questions</h4>
         <div>
-          <span className="fw-bold me-2">Total Points: {calculateTotalPoints()}</span>
+          <span className="fw-bold me-2">
+            Total Points: {calculateTotalPoints()}
+          </span>
         </div>
       </div>
 
@@ -253,7 +278,7 @@ export default function QuizQuestionsEditor() {
           <Tab.Pane eventKey="questions">
             <div className="text-center mb-4">
               <div className="d-flex justify-content-center align-items-center">
-                <Form.Select 
+                <Form.Select
                   value={newQuestionType}
                   onChange={(e) => setNewQuestionType(e.target.value)}
                   className="me-3"
@@ -263,8 +288,8 @@ export default function QuizQuestionsEditor() {
                   <option value="true-false">True/False</option>
                   <option value="fill-in-blank">Fill in the Blank</option>
                 </Form.Select>
-                <Button 
-                  variant="outline-secondary" 
+                <Button
+                  variant="outline-secondary"
                   className="px-4 py-2"
                   onClick={handleAddQuestion}
                 >
@@ -285,7 +310,9 @@ export default function QuizQuestionsEditor() {
                       <QuestionEditor
                         question={question}
                         onEdit={() => {}}
-                        onSave={(updatedQuestion) => handleSaveQuestion(question._id, updatedQuestion)}
+                        onSave={(updatedQuestion) =>
+                          handleSaveQuestion(question._id, updatedQuestion)
+                        }
                         onCancel={() => handleCancelEdit(question._id)}
                         onDelete={() => handleDeleteQuestion(question._id)}
                       />
@@ -293,21 +320,27 @@ export default function QuizQuestionsEditor() {
                       <div className="question-preview border p-3 rounded">
                         <div className="d-flex justify-content-between align-items-center mb-3">
                           <div>
-                            <span className="badge bg-primary me-2">Question {index + 1}</span>
-                            <span className="badge bg-secondary">{question.points} pts</span>
-                            <span className="ms-2 fw-bold">{question.question}</span>
+                            <span className="badge bg-primary me-2">
+                              Question {index + 1}
+                            </span>
+                            <span className="badge bg-secondary">
+                              {question.points} pts
+                            </span>
+                            <span className="ms-2 fw-bold">
+                              {question.question}
+                            </span>
                           </div>
                           <div className="d-flex align-items-center">
-                            <Button 
-                              variant="outline-primary" 
+                            <Button
+                              variant="outline-primary"
                               size="sm"
                               onClick={() => handleEditQuestion(question._id)}
                             >
                               Edit
                             </Button>
-                            <FaTrash 
-                              className="text-danger ms-2" 
-                              style={{cursor: 'pointer'}}
+                            <FaTrash
+                              className="text-danger ms-2"
+                              style={{ cursor: "pointer" }}
                               onClick={() => handleDeleteQuestion(question._id)}
                             />
                           </div>
@@ -320,19 +353,27 @@ export default function QuizQuestionsEditor() {
             )}
 
             <div className="d-flex justify-content-start mt-4">
-              <Button variant="outline-secondary" className="me-2" onClick={handleCancel}>
+              <Button
+                variant="outline-secondary"
+                className="me-2"
+                onClick={handleCancel}
+              >
                 Cancel
               </Button>
-              <Button variant="danger" onClick={handleSave} disabled={questions.length === 0}>
-                Save
-              </Button>
-              <Button 
-                variant="success" 
-                className="ms-2"
-                onClick={handleSaveAndPublish} 
+              <Button
+                variant="danger"
+                onClick={handleSave}
                 disabled={questions.length === 0}
               >
-                {quiz?.published ? "Save" : "Save & Publish"}
+                Save
+              </Button>
+              <Button
+                variant="success"
+                className="ms-2"
+                onClick={handleSaveAndPublish}
+                disabled={questions.length === 0}
+              >
+                Save & Publish
               </Button>
             </div>
           </Tab.Pane>
